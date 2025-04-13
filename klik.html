@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klik</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7eacd;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .game-container {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .score {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .click-button {
+            font-size: 24px;
+            padding: 20px 40px;
+        }
+        .cat-image {
+            width: 100px; 
+            height: 100px; 
+            transition: width 0.1s, height 0.1s; 
+        }
+        .cat-container {
+            position: fixed;
+            bottom: 20px; 
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container game-container">
+        <h1>klik</h1>
+        <div class="score" id="score">0</div>
+        <button class="btn btn-primary click-button" id="clickButton">click on me!</button>
+    </div>
+
+    <div class="cat-container">
+        <img src="file:///C:/Users/Admin/Desktop/Moros%20PE-21/Сетевое%20программирование/img/кот.jpg" alt="Cat" id="catImage" class="cat-image">
+    </div>
+
+    <script>
+        let score = 0;
+        const scoreDisplay = document.getElementById('score');
+        const clickButton = document.getElementById('clickButton');
+        const catImage = document.getElementById('catImage');
+
+        clickButton.addEventListener('click', () => {
+            score++;
+            scoreDisplay.textContent = ' ' + score;
+            let newWidth = catImage.width + 1;
+            let newHeight = catImage.height + 1;
+
+            catImage.style.width = newWidth + 'px';
+            catImage.style.height = newHeight + 'px';
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
