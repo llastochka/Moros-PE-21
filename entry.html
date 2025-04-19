@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ЧЕРЕВИЧКИ — Авторизация</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #000000;
+            --color-header: #111111;
+            --color-accent: #32CD32;
+            --color-card: #1a1a1a;
+            --color-btn: #32CD32;
+            --color-btn-hover: #ffffff;
+            --color-text: #ffffff;
+            --color-border: #006400;
+            --color-shadow: rgba(34, 139, 34, 0.7);
+        }
+
+        * {box-sizing: border-box;}
+
+        html, body {
+            margin: 0; padding: 0;
+            font-family: 'Press Start 2P', Arial, monospace;
+            background: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-container {
+            background: var(--color-card);
+            border: 2px solid var(--color-border);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px var(--color-shadow);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .auth-container h1 {
+            margin-bottom: 20px;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 2px 4px 25px #228B22CC, 1px 1px 0 #FFF8;
+        }
+
+        .auth-container input[type="text"], .auth-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            background: #333;
+            color: var(--color-text);
+        }
+
+        .auth-container input[type="submit"] {
+            background: var(--color-btn);
+            color: #000;
+            border: none;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: background 0.3s;
+        }
+
+        .auth-container input[type="submit"]:hover {
+            background: var(--color-btn-hover);
+        }
+
+        .auth-container a {
+            color: var(--color-sub);
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .auth-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Войти</h1>
+        <form action="#" method="post">
+            <input type="text" name="username" placeholder="Имя пользователя" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <input type="submit" value="Войти">
+        </form>
+        <a href="#">Забыли пароль?</a>
+    </div>
+</body>
+</html>
