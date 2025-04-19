@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ЧЕРЕВИЧКИ — Автоматизация склада</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+        --color-bg: #000000; /* Черный фон */
+        --color-header: #111111;
+        --color-accent: #40E0D0; /* Бирюзовый для акцентов */
+        --color-card: #151515;
+        --color-nav-bg: #0f0f0f;
+        --color-btn: #40E0D0; /* Бирюзовый для кнопок */
+        --color-btn-hover: #ffffff; /* Белый при наведении */
+        --color-text: #ffffff; /* Белый текст */
+        --color-sub: #40E0D0; /* Бирюзовый для подзаголовков */
+        --color-border: #2E8B8B; /* Темный бирюзовый для границ */
+        --color-shadow: rgba(32, 178, 170, 0.7); /* Темная бирюзовая тень */
+        --gradient-decor: radial-gradient(circle at 60% 20%, #2e2e2e 0, #1b1b1b 120%);
+    }
+
+
+        * {box-sizing: border-box;}
+
+        html, body {
+            margin: 0; padding: 0;
+            font-family: 'Press Start 2P', Arial, monospace;
+            background: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            letter-spacing: .02em;
+        }
+
+        header {
+            position: sticky; top: 0; z-index: 99;
+            background: var(--color-header);
+            box-shadow: 0 7px 22px #49008c3d;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 1.5vw; min-height: 60px;
+            border-bottom: 2px solid var(--color-border);
+            backdrop-filter: blur(5.5px);
+        }
+
+        .logo {
+            display: flex; align-items: center; gap: .5em;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-accent);
+            text-shadow: 2px 2px 8px #0011ff66, 0 0 14px #fff9;
+            padding: 0.4em 0 0.25em 0;
+            letter-spacing: .12em;
+            user-select: none;
+        }
+
+        .logo .pixelicon {
+            font-size: 1.85em; margin-right: -0.2em; filter: drop-shadow(0 2px 8px #ff8c00a0);
+            content: url('path_to_your_pixel_shoe.png'); /* Заменить на пиксель-арт туфельки */
+        }
+
+        nav {
+            background: var(--color-nav-bg);
+            border-radius: 20px;
+            padding: 4px 18px;
+            box-shadow: 0 4px 18px #5e37ca3f;
+            display: flex; align-items: center; gap: 18px;
+            transition: transform .3s ease-in-out;
+        }
+
+        .nav-link {
+            position: relative;
+            font-size: 1em;
+            color: var(--color-sub);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 8px;
+            transition: all .2s ease-in-out;
+            margin: 0 0.1em 0 0;
+            outline: none;
+        }
+
+        .nav-link .pixelicon {font-size:1em; margin-right:6px;}
+
+        .nav-link.active,
+        .nav-link:hover,
+        .nav-link:focus {
+            transform: scale(1.1);
+            background: linear-gradient(90deg, #1e1e1e 50%, #964f8f0f 100%);
+            color: var(--color-btn-hover);
+            font-size: 1.1em;
+            text-shadow: 0 0 10px var(--color-shadow);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 2vw;
+        }
+
+        .welcome {
+            margin: 62px auto 37px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(120deg, #0b0b0e 10%, transparent 80%);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 9px 40px var(--color-shadow);
+            padding: 48px 6vw 35px 6vw;
+            max-width: 700px;
+            min-width: 320px;
+            border: 2px dashed var(--color-accent);
+            backdrop-filter: blur(5.5px);
+        }
+
+        .welcome h1 {
+            margin: 0 0 14px 0;
+            text-align:center;
+            font-size: 2.1rem;
+            letter-spacing: .1em;
+            color: var(--color-accent);
+            text-shadow: 2px 4px 25px #2b00ffb3,1px 1px 0 #fff8;
+            font-family:'Press Start 2P', monospace;
+        }
+
+        .lead {
+            font-size: 1.17em;
+            text-align: center;
+            color: var(--color-sub);
+            letter-spacing: .07em;
+            margin: 0 0 8px 0;
+            line-height: 2.06em;
+            background: transparent;
+            padding: 0;
+            font-weight:normal;
+            text-shadow: 0 2px 8px #5100ff33;
+        }
+
+        .cards-wrap {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 36px 34px;
+            align-items: stretch;
+            justify-content: center;
+            margin-bottom: 42px;
+        }
+
+        .card {
+            background: var(--color-card);
+            border-radius: 15px;
+            border: 2.7px solid var(--color-border);
+            box-shadow: 0 8px 40px var(--color-shadow), 0 1.5px 10px #0008;
+            padding: 32px 22px 26px 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-width: 220px;
+            min-height: 220px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .4s, box-shadow .35s, border-color .13s;
+            font-size: 1em;
+            background-image: none;
+        }
+
+        .card:hover,
+        .card:focus-within {
+            transform: translateY(-6px) scale(1.025);
+            box-shadow: 0 18px 58px #ae37ca30, 0 9px 36px #0004;
+            border-color: var(--color-accent2);
+            z-index:2;
+        }
+
+        .card-title {
+            margin-bottom: 14px;
+            font-size: 1.2em;
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            text-shadow: 1px 1px 0 #000000,0 0 14px #2b00ff88;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .card-title .pixelicon {font-size:1.25em; margin-right:8px;}
+
+        .card-text {
+            color: var(--color-text);
+            font-size: 0.9em;
+            margin-bottom: 24px;
+            min-height: 70px;
+            opacity: 0.96;
+            line-height: 1.7;
+            text-shadow: 0 1px 4px #00000033;
+        }
+
+        .btn {
+            font-size: 1em;
+            background: var(--color-btn);
+            color: #000;
+            border: 2.5px solid var(--color-accent);
+            padding: 12px 28px;
+            border-radius: 8px;
+            margin-top: auto;
+            margin-left: -7px;
+            box-shadow: 2px 2px 0 #e9dafe, 6px 9px 0 #322d27;
+            letter-spacing: .01em;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.44em;
+            font-weight: bold;
+            transition: background .16s, box-shadow .13s, color .13s, border-color .17s;
+        }
+
+        .btn:hover, .btn:focus {
+            background: var(--color-btn-hover);
+            color: #000;
+            box-shadow: 2px 2px 0 #fff4, 7px 9px 0 #2827d4;
+            border-color: #fff6;
+        }
+
+        .btn .pixelicon {font-size:1.2em;}
+
+        .alert-info {
+            border-radius: 10px;
+            background: linear-gradient(99deg, #101010 60%, #202020 120%);
+            color: var(--color-btn);
+            font-size: 1em;
+            border: 2.7px solid #5237ca;
+            box-shadow: 9px 8px 0 #151515, 0 1px 20px var(--color-shadow);
+            padding: 20px 18px 14px 18px;
+            margin: 33px auto 0 auto;
+            text-align: center;
+            max-width: 420px;
+            font-family: 'Press Start 2P', monospace;
+            line-height: 1.67;
+            font-weight: bold;
+            text-shadow: 0 1px 7px #1100ffa0;
+            transform: scale(1);
+        }
+
+        .alert-info b {
+            color: var(--color-accent2);
+            letter-spacing: .08em;
+            font-size: 1.12em;
+            text-shadow: 0 1px 12px var(--color-accent);
+            display: block; 
+            margin-bottom: 6px;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--color-sub);
+            background: #0e0e0e;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.9rem;
+            letter-spacing: .01em;
+            border-top: 2px dashed var(--color-accent2);
+            padding: 22px 0 10px 0;
+            margin-top: 35px;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #4400ff, 0 0 20px ##4400ff, 0 0 30px #4400ff, 0 0 40px #4400ff, 0 0 50px #4400ff;
+            }
+            to {
+                text-shadow: 0 0 20px #4400ff, 0 0 30px #4400ff, 0 0 40px #4400ff, 0 0 50px #4400ff, 0 0 60px #4400ff;
+            }
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        @media (max-width: 940px) {
+            .cards-wrap {grid-template-columns: 1fr 1fr;}
+            .welcome {padding: 31px 3vw 25px 3vw;}
+        }
+
+        @media (max-width: 700px) {
+            header {flex-direction: column; gap: 8px; padding: 0 0vw 0 0vw; align-items: flex-start;}
+            .logo {font-size: 1rem;}
+            nav {padding: 4px 6px 4px 8px; margin-right: 0; gap: 6px;}
+            .nav-link {font-size: .78em;}
+            main {padding: 0 1vw;}
+            .welcome h1 {font-size: 1.2rem;}
+            .welcome {padding: 20px 2vw 18px 2vw;}
+        }
+
+        @media (max-width:530px){
+            .cards-wrap {grid-template-columns: 1fr;}
+            .card {padding:16px 1vw;}
+            .welcome {max-width:99vw;}
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <span class="pixelicon">👟</span>ЧЕРЕВИЧКИ
+    </div>
+    <nav>
+        <a href="#" class="nav-link active"><span class="pixelicon">🏠</span>Главная</a>
+        <a href="#" class="nav-link"><span class="pixelicon">📦</span>Товары</a>
+        <a href="#" class="nav-link"><span class="pixelicon">🚚</span>Отгрузка</a>
+        <a href="#" class="nav-link"><span class="pixelicon">📊</span>Отчёты</a>
+    </nav>
+</header>
+
+<main>
+    <div class="welcome">
+        <h1>Добро пожаловать<br>в систему склада <br><br>ЧЕРЕВИЧКИ!</h1>
+        <div class="lead">Где каждая пара обуви находит свою<br>вторую половинку <br>(и иногда даже коробку)!</div>
+    </div>
+
+    <section class="cards-wrap">
+        <div class="card">
+            <div class="card-title"><span class="pixelicon">📦</span>Учёт товара</div>
+            <div class="card-text">Добавляйте, редактируйте, удаляйте и ищите обувь на складе. Даже если это тапки!</div>
+            <a href="#" class="btn"><span class="pixelicon">🔎</span>К учёту</a>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><span class="pixelicon">🚚</span>Отгрузка</div>
+            <div class="card-text">Пусть ваши “ЧЕРЕВИЧКИ” найдут новых обладателей! Создавайте заявки и отслеживайте поставки онлайн.</div>
+            <a href="#" class="btn"><span class="pixelicon">🛒</span>К отгрузке</a>
+        </div>
+
+        <div class="card">
+            <div class="card-title"><span class="pixelicon">📊</span>Отчёты</div>
+            <div class="card-text">Вся статистика по складу — от популярности левого ботинка до количества потерянных шнурков.</div>
+            <a href="#" class="btn"><span class="pixelicon">📈</span>К отчётам</a>
+        </div>
+    </section>
+
+    <div class="alert-info">
+        <b>Прикол дня:</b>
+        Почему у нас нет одного правого ботинка?<br>
+        Потому что мы умеем автоматизировать всё,<br>
+        кроме утраченной надежды! 
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 "ЧЕРЕВИЧКИ" — автоматизация с улыбкой и пикселями 🟪
+</footer>
+</body>
+</html>
