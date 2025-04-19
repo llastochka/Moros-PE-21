@@ -7,20 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
-        --color-bg: #000000; /* Черный фон */
-        --color-header: #111111;
-        --color-accent: #40E0D0; /* Бирюзовый для акцентов */
-        --color-card: #151515;
-        --color-nav-bg: #0f0f0f;
-        --color-btn: #40E0D0; /* Бирюзовый для кнопок */
-        --color-btn-hover: #ffffff; /* Белый при наведении */
-        --color-text: #ffffff; /* Белый текст */
-        --color-sub: #40E0D0; /* Бирюзовый для подзаголовков */
-        --color-border: #2E8B8B; /* Темный бирюзовый для границ */
-        --color-shadow: rgba(32, 178, 170, 0.7); /* Темная бирюзовая тень */
-        --gradient-decor: radial-gradient(circle at 60% 20%, #2e2e2e 0, #1b1b1b 120%);
-    }
-
+            --color-bg: #000000; /* Черный фон */
+            --color-header: #111111;
+            --color-accent: #32CD32; /* Неоново-зелёный для акцентов */
+            --color-card: #1a1a1a; /* Более светлый фон карточки для контраста */
+            --color-nav-bg: #0f0f0f;
+            --color-btn: #32CD32; /* Неоново-зелёный для кнопок */
+            --color-btn-hover: #ffffff; /* Белый при наведении */
+            --color-text: #ffffff; /* Белый текст */
+            --color-sub: #32CD32; /* Неоново-зелёный для подзаголовков */
+            --color-border: #006400; /* Темно-зелёный для границ */
+            --color-shadow: rgba(34, 139, 34, 0.7); /* Темная тень зелёного */
+            --gradient-decor: radial-gradient(circle at 60% 20%, #2e2e2e 0, #1b1b1b 120%);
+        }
 
         * {box-sizing: border-box;}
 
@@ -42,7 +41,7 @@
         header {
             position: sticky; top: 0; z-index: 99;
             background: var(--color-header);
-            box-shadow: 0 7px 22px #49008c3d;
+            box-shadow: 0 7px 22px #004C0080;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 1.5vw; min-height: 60px;
             border-bottom: 2px solid var(--color-border);
@@ -54,22 +53,22 @@
             font-size: 1.8rem;
             font-weight: bold;
             color: var(--color-accent);
-            text-shadow: 2px 2px 8px #0011ff66, 0 0 14px #fff9;
+            text-shadow: 2px 2px 8px #32CD324D, 0 0 14px #32CD32B3;
             padding: 0.4em 0 0.25em 0;
             letter-spacing: .12em;
             user-select: none;
         }
 
         .logo .pixelicon {
-            font-size: 1.85em; margin-right: -0.2em; filter: drop-shadow(0 2px 8px #ff8c00a0);
-            content: url('path_to_your_pixel_shoe.png'); /* Заменить на пиксель-арт туфельки */
+            font-size: 1.85em; margin-right: -0.2em; filter: drop-shadow(0 2px 8px #32CD3299);
+            content: url('path_to_your_pixel_shoe.png');
         }
 
         nav {
             background: var(--color-nav-bg);
             border-radius: 20px;
             padding: 4px 18px;
-            box-shadow: 0 4px 18px #5e37ca3f;
+            box-shadow: 0 4px 18px #228B2266;
             display: flex; align-items: center; gap: 18px;
             transition: transform .3s ease-in-out;
         }
@@ -97,7 +96,7 @@
         .nav-link:hover,
         .nav-link:focus {
             transform: scale(1.1);
-            background: linear-gradient(90deg, #1e1e1e 50%, #964f8f0f 100%);
+            background: linear-gradient(90deg, #1e1e1e 50%, #32CD321A 100%);
             color: var(--color-btn-hover);
             font-size: 1.1em;
             text-shadow: 0 0 10px var(--color-shadow);
@@ -113,6 +112,7 @@
             margin: 0 auto;
             width: 100%;
             padding: 0 2vw;
+            position: relative;
         }
 
         .welcome {
@@ -138,7 +138,7 @@
             font-size: 2.1rem;
             letter-spacing: .1em;
             color: var(--color-accent);
-            text-shadow: 2px 4px 25px #2b00ffb3,1px 1px 0 #fff8;
+            text-shadow: 2px 4px 25px #228B22CC, 1px 1px 0 #FFF8;
             font-family:'Press Start 2P', monospace;
         }
 
@@ -152,14 +152,14 @@
             background: transparent;
             padding: 0;
             font-weight:normal;
-            text-shadow: 0 2px 8px #5100ff33;
+            text-shadow: 0 2px 8px #228B224D;
         }
 
         .cards-wrap {
             width: 100%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 36px 34px;
+            gap: 48px 34px;
             align-items: stretch;
             justify-content: center;
             margin-bottom: 42px;
@@ -169,26 +169,27 @@
             background: var(--color-card);
             border-radius: 15px;
             border: 2.7px solid var(--color-border);
-            box-shadow: 0 8px 40px var(--color-shadow), 0 1.5px 10px #0008;
+            box-shadow: 0 8px 20px var(--color-shadow), 0 1.5px 10px #0008;
             padding: 32px 22px 26px 22px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             min-width: 220px;
-            min-height: 220px;
+            min-height: 250px;
             position: relative;
             overflow: hidden;
-            transition: transform .4s, box-shadow .35s, border-color .13s;
+            transition: transform .4s, box-shadow .3s, border-color .13s, background-color .35s;
             font-size: 1em;
             background-image: none;
+            text-align: center;
         }
 
         .card:hover,
         .card:focus-within {
-            transform: translateY(-6px) scale(1.025);
-            box-shadow: 0 18px 58px #ae37ca30, 0 9px 36px #0004;
-            border-color: var(--color-accent2);
-            z-index:2;
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 18px 58px #18A640A0, 0 9px 36px #0004;
+            border-color: var(--color-accent);
+            background-color: #222;
         }
 
         .card-title {
@@ -198,9 +199,10 @@
             display: flex;
             align-items: center;
             gap: 1em;
-            text-shadow: 1px 1px 0 #000000,0 0 14px #2b00ff88;
+            text-shadow: 1px 1px 0 #000000,0 0 14px #32CD32CC;
             letter-spacing: 0.03em;
             text-transform: uppercase;
+            justify-content: center;
         }
 
         .card-title .pixelicon {font-size:1.25em; margin-right:8px;}
@@ -216,6 +218,7 @@
         }
 
         .btn {
+            /* Добавлена анимация свечения */
             font-size: 1em;
             background: var(--color-btn);
             color: #000;
@@ -223,8 +226,7 @@
             padding: 12px 28px;
             border-radius: 8px;
             margin-top: auto;
-            margin-left: -7px;
-            box-shadow: 2px 2px 0 #e9dafe, 6px 9px 0 #322d27;
+            box-shadow: 2px 2px 0 #D9FFDA, 6px 9px 0 #1D2D1B;
             letter-spacing: .01em;
             text-transform: uppercase;
             cursor: pointer;
@@ -233,83 +235,60 @@
             align-items: center;
             gap: 0.44em;
             font-weight: bold;
-            transition: background .16s, box-shadow .13s, color .13s, border-color .17s;
+            transition: all 0.3s ease;
+            animation: glow 1.5s infinite alternate;
+            justify-content: center;
         }
 
         .btn:hover, .btn:focus {
             background: var(--color-btn-hover);
             color: #000;
-            box-shadow: 2px 2px 0 #fff4, 7px 9px 0 #2827d4;
+            box-shadow: 2px 2px 0 #FFF4, 7px 9px 0 #27D41B;
             border-color: #fff6;
+            transform: scale(1.05);
         }
 
-        .btn .pixelicon {font-size:1.2em;}
-
         .alert-info {
+            margin: 62px auto 37px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(120deg, #0b0b0e 10%, transparent 80%);
             border-radius: 10px;
-            background: linear-gradient(99deg, #101010 60%, #202020 120%);
-            color: var(--color-btn);
-            font-size: 1em;
-            border: 2.7px solid #5237ca;
-            box-shadow: 9px 8px 0 #151515, 0 1px 20px var(--color-shadow);
-            padding: 20px 18px 14px 18px;
-            margin: 33px auto 0 auto;
+            position: relative;
+            box-shadow: 0 9px 40px var(--color-shadow);
+            padding: 48px 6vw 35px 6vw;
+            max-width: 700px;
+            min-width: 320px;
+            border: 2px dashed var(--color-accent);
+            backdrop-filter: blur(5.5px);
             text-align: center;
-            max-width: 420px;
-            font-family: 'Press Start 2P', monospace;
-            line-height: 1.67;
-            font-weight: bold;
-            text-shadow: 0 1px 7px #1100ffa0;
-            transform: scale(1);
+            font-size: 1.1em;
+            text-shadow: 0 2px 4px #00000099;
+            color: #fff;
         }
 
         .alert-info b {
-            color: var(--color-accent2);
-            letter-spacing: .08em;
-            font-size: 1.12em;
-            text-shadow: 0 1px 12px var(--color-accent);
-            display: block; 
-            margin-bottom: 6px;
+            margin-bottom: 14px;
+            font-size: 1.5rem;
+            letter-spacing: .1em;
+            color: var(--color-accent);
+            text-shadow: 2px 4px 25px #228B22CC, 1px 1px 0 #FFF8;
+            font-family:'Press Start 2P', monospace;
         }
 
         footer {
             text-align: center;
+            font-size: 0.8em;
+            padding: 16px 0;
             color: var(--color-sub);
-            background: #0e0e0e;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.9rem;
-            letter-spacing: .01em;
-            border-top: 2px dashed var(--color-accent2);
-            padding: 22px 0 10px 0;
-            margin-top: 35px;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #4400ff, 0 0 20px ##4400ff, 0 0 30px #4400ff, 0 0 40px #4400ff, 0 0 50px #4400ff;
-            }
-            to {
-                text-shadow: 0 0 20px #4400ff, 0 0 30px #4400ff, 0 0 40px #4400ff, 0 0 50px #4400ff, 0 0 60px #4400ff;
-            }
-        }
-
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+            text-shadow: 0 1px 4px #00000033;
         }
 
         @media (max-width: 940px) {
             .cards-wrap {grid-template-columns: 1fr 1fr;}
-            .welcome {padding: 31px 3vw 25px 3vw;}
+            .welcome, .alert-info {padding: 31px 3vw 25px 3vw;}
         }
 
         @media (max-width: 700px) {
@@ -318,14 +297,14 @@
             nav {padding: 4px 6px 4px 8px; margin-right: 0; gap: 6px;}
             .nav-link {font-size: .78em;}
             main {padding: 0 1vw;}
-            .welcome h1 {font-size: 1.2rem;}
-            .welcome {padding: 20px 2vw 18px 2vw;}
+            .welcome h1, .alert-info b {font-size: 1.2rem;}
+            .welcome, .alert-info {padding: 20px 2vw 18px 2vw;}
         }
 
         @media (max-width:530px){
             .cards-wrap {grid-template-columns: 1fr;}
             .card {padding:16px 1vw;}
-            .welcome {max-width:99vw;}
+            .welcome, .alert-info {max-width:99vw;}
         }
     </style>
 </head>
@@ -369,15 +348,15 @@
     </section>
 
     <div class="alert-info">
-        <b>Прикол дня:</b>
-        Почему у нас нет одного правого ботинка?<br>
-        Потому что мы умеем автоматизировать всё,<br>
+        <b>Прикол дня:</b><br>
+        Почему у нас нет одного <br><br> правого ботинка?<br><br>
+        Потому что мы умеем <br><br> автоматизировать всё,<br><br>
         кроме утраченной надежды! 
     </div>
 </main>
 
 <footer>
-    &copy; 2025 "ЧЕРЕВИЧКИ" — автоматизация с улыбкой и пикселями 🟪
+    &copy; 2025 "ЧЕРЕВИЧКИ" — автоматизация с улыбкой и пикселями 
 </footer>
 </body>
 </html>
